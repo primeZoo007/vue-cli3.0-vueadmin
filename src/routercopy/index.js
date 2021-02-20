@@ -13,7 +13,6 @@ class VueRouter {
         this.$options = options
         this.match()
         window.addEventListener('hashchange', () => {
-            console.log(123)
             this.current = window.location.hash.slice(1)
             this.matched = []
             this.match()
@@ -28,6 +27,7 @@ class VueRouter {
                 return
             }
             if (route.path !== '/' && this.current.indexOf(route.path) !== -1) {
+                console.log(route.path)
                 this.matched.push(route)
                 if (route.children) {
                     this.match(route.children)
