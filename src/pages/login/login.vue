@@ -1,5 +1,10 @@
 <template>
     <div class="login-container">
+        <router-view></router-view>
+        <router-link to="/login/info">123</router-link>
+        <div @click.prevent="$store.commit('add')">{{this.$store.state.count}}</div>
+        <div @click.prevent="$store.dispatch('add')">{{this.$store.state.count}}</div>
+        <!-- <div >{{this.$store.getters.test}}</div> -->
         <el-form class="login-form" autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left">
             <h3 class="title">后台管理系统</h3>
             <el-form-item prop="username">

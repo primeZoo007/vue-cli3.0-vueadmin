@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport'
+          content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Document</title>
+</head>
+<body>
+    <div class='test'></div>
+</body>
+<style>
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+
+        to { transform: rotate(360deg); }
+
+    }
+
+    /* 旋转，渐变色 */
+
+    .test {
+        width: 200px;
+
+        height: 200px;
+        border-radius:50%;
+
+        background-image: -moz-radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+
+        background-image: -webkit-radial-gradient(45px 45px, circle cover, yellow, orange);
+
+        background-image: radial-gradient(45px 45px 45deg, circle cover, yellow 0%, orange 100%, red 95%);
+
+        animation-name: spin;
+
+        animation-duration: 3s; /* 3 seconds */
+
+        animation-iteration-count: infinite;
+
+        animation-timing-function: linear;
+
+    }
+
+
+</style>
+
+<script>
+    var test  = function(){
+        let params = [
+            {
+                name:'hello',
+                value:'123'
+            },
+            {
+                name:'test',
+                value:'789'
+            }
+        ]
+        params.reduce()
+    }
+</script>
+</html>

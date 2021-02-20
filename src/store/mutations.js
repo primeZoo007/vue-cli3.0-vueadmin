@@ -10,5 +10,8 @@ export default {
     },
     setCrumbList(state, list) {
         state.crumbList = list
+    },
+    add(state) {
+        state.count++
     }
 }

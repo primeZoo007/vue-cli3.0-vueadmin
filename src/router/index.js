@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import Router from '@/routercopy/index'
 
 import Login from '@/pages/login/login'
 import NotFound from '@/pages/errorPage/404'
@@ -13,8 +13,23 @@ Vue.use(Router)
 export default new Router({
     routes: [
         {
-            path: '/login',
+            path: '/',
             component: Login
+        },
+        {
+            path: '/login',
+            component: Login,
+            children: [{
+                path: '/login/info',
+                component: {
+                    render(h) { return h('div', 'info page') }
+                }
+            }
+            ]
+        },
+        {
+            path: '/403',
+            component: Forbidden
         }
     ]
 })
