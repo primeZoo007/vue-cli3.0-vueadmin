@@ -8,14 +8,19 @@ class Store {
         })
         this._mutations = options.mutations
         this._actions = options.actions
-        // this._getters={}
-        // Object.keys(options.getters).map(key=>{
-        //     Object.defineProperty(this._getters,key,{get(){
-        //         return this._getters[key]
-        //     },set(newAge){
-        //         this._getters[key] = newAge
-        //     }})
-        // })
+        this._getters = options.getters
+        const store = this
+        this.getters = {}
+        const computed = {}
+        Object.keys(this._getters).forEach(key => {
+            const fn = store._getters[key]
+            computed[key] = function() {
+                return fn(store.state)
+            }
+            Object.defineProperty(store.getters, key, {
+                get: () => store._vm[key]
+            })
+        })
         this.commit = this.commit.bind(this)
         // 绑定上下文中的数据是this指向$Store
         this.dispatch = this.dispatch.bind(this)
