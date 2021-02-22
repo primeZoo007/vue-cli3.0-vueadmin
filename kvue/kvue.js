@@ -6,14 +6,14 @@ function defineReactive(obj, key, val) {
     const dep = new Dep()
     Object.defineProperty(obj, key, {
         get() {
-            console.log('get', key)
+            // console.log('get', key)
             // Dep.target = watcher 两者形成关系
             Dep.target && dep.addDep(Dep.target)
             return val
         },
         set(newVal) {
             if (val !== newVal) {
-                console.log('set', key)
+                // console.log('set', key)
                 val = newVal
                 // 保证如果newVal是对象，再次赋值做响应式，如果newVal为对象不在set中监听，那吗newVal中的自级将不能被监听，继续修改之后，元素并没有被监听
                 observe(newVal)
@@ -113,7 +113,7 @@ class Compile {
                 // 文本的处理
                 if (this.isInter(node)) {
                     // 此处匹配{{}}
-                    console.log('插值', node.textContent)
+                    // console.log('插值', node.textContent)
                     this.compileText(node)
                 }
             }
@@ -126,10 +126,20 @@ class Compile {
         // 1.初始化
         const fn = this[dir + 'Updater']
         fn && fn(node, this.$vm[exp])
-        // 2.更新
+        // 2.更新时候重制函数
         new Watcher(this.$vm, exp, function(val) {
             fn && fn(node, val)
         })
+    }
+    model(node, exp) {
+        node.addEventListener('input', e => {
+            // defineReactive(this.$vm, exp, e.target.value)
+            this.$vm[exp] = e.target.value
+        })
+        this.update(node, exp, 'model')
+    }
+    modelUpdater(node, val) {
+        node.value = val
     }
     html(node, exp) {
         this.update(node, exp, 'html')
@@ -163,6 +173,7 @@ class Watcher {
     }
     // 未来被Dep实例调用
     update() {
+        // 将最近的值传递
         this.updateFn.call(this.$vm, this.$vm[this.key])
     }
 }

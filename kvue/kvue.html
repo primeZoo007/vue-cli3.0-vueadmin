@@ -2,12 +2,17 @@
 <div id="app"><p k-text="counter"></p>
     <p k-html="nodeHtml"></p>
     <p>{{test}}</p>
+    <p>
+        <input type="text" k-model="model"/>
+    </p>
+    <p>{{model}}</p>
 </div>
 <script src="./kvue.js"></script>
 <script>
     const app = new Kvue({
         el:'#app',
         data:{
+            model:'1',
             test:1,
             counter:12345,
             nodeHtml:'<div>hello world</div>'
