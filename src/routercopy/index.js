@@ -39,6 +39,7 @@ class VueRouter {
 }
 // 参数1是vue。use的时候直接引入的
 VueRouter.install = function (_Vue) {
+    console.log(123)
     Vue = _Vue
     // 1.挂在vuerouter的属性
     // this.$router.push()
@@ -69,6 +70,7 @@ VueRouter.install = function (_Vue) {
     })
     Vue.component('router-view', {
         render(h) {
+            console.log('router-view use time')
             // 标记当前route-view的深度
             this.$vnode.data.routerView = true
             let depth = 0

@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<div id="app"><p k-text="counter"></p>
+    <p k-html="nodeHtml"></p>
+    <p>{{test}}</p>
+</div>
+<script src="./kvue.js"></script>
+<script>
+    const app = new Kvue({
+        el:'#app',
+        data:{
+            test:1,
+            counter:12345,
+            nodeHtml:'<div>hello world</div>'
+        }
+    })
+    setInterval(()=>{
+        app.test++
+        app.counter++
+    },1000)
+</script>
